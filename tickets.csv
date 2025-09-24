@@ -1,0 +1,31 @@
+ticket_id,user_id,asset_id,category,priority,status,created_at,resolved_at
+1,1,8,Email Issue,P1,In Progress,2025-09-03 17:00:00,
+2,5,10,Network Downtime,P3,Open,2025-09-03 01:00:00,
+3,4,5,Password Reset,P1,Open,2025-09-13 08:00:00,
+4,8,6,Printer Issue,P2,In Progress,2025-09-07 21:00:00,
+5,5,2,Email Issue,P3,Open,2025-09-18 23:00:00,
+6,4,3,Software Installation,P2,In Progress,2025-09-21 22:00:00,
+7,9,4,Network Downtime,P1,Open,2025-09-02 10:00:00,
+8,7,5,Password Reset,P1,Closed,2025-09-11 06:00:00,2025-09-13 22:00:00
+9,7,8,Printer Issue,P2,Open,2025-09-08 23:00:00,
+10,9,9,Network Downtime,P3,Closed,2025-09-14 18:00:00,2025-09-16 22:00:00
+11,6,4,Printer Issue,P3,In Progress,2025-09-03 01:00:00,
+12,2,3,Printer Issue,P3,In Progress,2025-09-20 02:00:00,
+13,7,7,Email Issue,P2,Closed,2025-09-09 17:00:00,2025-09-09 19:00:00
+14,2,9,Network Downtime,P3,In Progress,2025-09-04 09:00:00,
+15,7,3,Software Installation,P1,Closed,2025-09-09 16:00:00,2025-09-10 15:00:00
+16,9,2,Network Downtime,P3,Closed,2025-09-20 06:00:00,2025-09-21 02:00:00
+17,6,3,Email Issue,P3,Open,2025-09-20 10:00:00,
+18,8,1,Password Reset,P2,In Progress,2025-09-08 01:00:00,
+19,4,10,Password Reset,P1,Closed,2025-09-16 02:00:00,2025-09-18 23:00:00
+20,3,3,Software Installation,P3,Open,2025-09-09 16:00:00,
+21,10,7,Printer Issue,P3,Closed,2025-09-07 22:00:00,2025-09-09 14:00:00
+22,7,6,Software Installation,P3,In Progress,2025-09-04 07:00:00,
+23,4,2,Network Downtime,P1,Closed,2025-09-18 07:00:00,2025-09-19 12:00:00
+24,1,2,Password Reset,P1,Open,2025-09-02 10:00:00,
+25,2,9,Printer Issue,P2,Closed,2025-09-16 06:00:00,2025-09-19 04:00:00
+26,3,10,Email Issue,P2,Open,2025-09-16 13:00:00,
+27,4,2,Password Reset,P3,In Progress,2025-09-12 13:00:00,
+28,7,8,Password Reset,P3,Closed,2025-09-21 03:00:00,2025-09-21 11:00:00
+29,7,6,Password Reset,P1,Open,2025-09-07 17:00:00,
+30,8,3,Software Installation,P1,In Progress,2025-09-15 07:00:00,

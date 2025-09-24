@@ -1,0 +1,11 @@
+asset_id,asset_name,asset_type,assigned_to
+1,Device1,Printer,9
+2,Device2,Server,7
+3,Device3,Laptop,4
+4,Device4,Laptop,2
+5,Device5,Router,10
+6,Device6,Server,4
+7,Device7,Printer,1
+8,Device8,Server,1
+9,Device9,Software,9
+10,Device10,Laptop,7
