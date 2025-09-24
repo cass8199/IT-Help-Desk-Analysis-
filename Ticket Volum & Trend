@@ -1,0 +1,59 @@
+--Ticket Volume & Trend-- 
+-- How many tickets are raised per day-- 
+select
+count(distinct(ticket_id)) as Total_number_of_tickets, 
+datename(Weekday, created_at) as Days
+from tickets 
+group by datename(weekday, created_at)
+order by count(distinct(ticket_id)) DESC
+
+
+--how many tickets are raised per week-- 
+select 
+count(distinct(ticket_id)) as Total_number_tickets,
+Concat('Week', ' ' , (datename(week,created_at))) as Week_lable
+from tickets
+group by datename(week,created_at)
+
+--adv weekly data using the current data as 1 not the calender date-- 
+SELECT
+    CONCAT('Week ', ROW_NUMBER() OVER (ORDER BY DATEADD(DAY, 1 - DATEPART(WEEKDAY, created_at), CAST(created_at AS DATE)))) AS Week_Label,
+    COUNT(ticket_id) AS Tickets_Per_Week
+FROM tickets
+GROUP BY DATEADD(DAY, 1 - DATEPART(WEEKDAY, created_at), CAST(created_at AS DATE))
+ORDER BY MIN(created_at);
+
+--How many tickets are raised per month -- 
+select 
+count(distinct(ticket_id)) as Total_number_of_tickets, 
+datename(month,created_at) as month_of
+from tickets 
+group by datename(month,created_at) 
+
+--Which department raises the most tickets-- 
+
+With cte_joined 
+as 
+( Select 
+  u.department,
+  t.ticket_id
+  from 
+  users as u 
+  left join tickets as t 
+  on t.user_id = u.user_id
+  )
+select 
+department,
+count(distinct(ticket_id)) as total_number_ticket
+from cte_joined 
+group by department
+order by count(distinct(ticket_id)) DESC
+
+-- Distribution of tickets-- 
+select 
+Category, 
+count(distinct(ticket_id)) as Total_Number_of_tickets 
+from tickets
+group by category 
+order by count(distinct(ticket_id)) DESC  
+
