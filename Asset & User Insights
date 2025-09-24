@@ -1,0 +1,92 @@
+
+/*
+Asset & User Insights
+*/
+
+--How many p1 & p2 tickets are currently open --
+select 
+priority,
+Count(ticket_id) as No_of_ticket 
+from tickets
+where priority IN (1, 2) 
+group by priority 
+
+-- What is the average resolution time for each priority level--
+select 
+priority,
+max(datediff(day, created_at,resolved_at)) as timetaken
+from tickets 
+group by priority 
+
+--Which users have raised the most tickets in the last month?--
+select 
+user_id as Users, 
+count(distinct(ticket_id)) as tickets_raised 
+from tickets
+group by user_id 
+
+--How many tickets breached the SLA (e.g., resolved after 48 hours for P1)--
+select 
+* 
+from tickets 
+where priority = 1 
+and datediff(day, created_at,resolved_at) > 1 
+
+--Which assets generate the most tickets?-- 
+select
+a.asset_type,
+count(distinct(ticket_id)) as no_of_tickets
+from 
+tickets as t 
+left join assets as a 
+on a.asset_id = t.asset_id 
+group by a.asset_type 
+order by count(distinct(ticket_id)) desc 
+
+--Which users have raised the most tickets in the last month?--
+
+select 
+u.name,
+count(distinct(ticket_id)) as no_of_tickets 
+from tickets as t 
+left join users as u 
+on u.user_id = t.user_id
+group by u.name 
+order by u.name DESC 
+
+-- Which users have raised the most tickets in the last month--
+WITH ana AS (
+    SELECT 
+        u.user_id,
+        u.name, 
+        t.ticket_id,
+        t.created_at
+    FROM users AS u
+    LEFT JOIN tickets AS t
+        ON u.user_id = t.user_id
+    WHERE t.created_at >= '2025-09-01'  -- last month (Sept)
+      AND t.created_at < '2025-10-01'   -- before Oct
+)
+SELECT 
+    user_id,
+    name,
+    COUNT(ticket_id) AS total_tickets
+FROM ana
+GROUP BY user_id, name
+ORDER BY total_tickets DESC;
+
+
+--Are there recurring issues with a specific asset type (Laptop vs Printer)--
+
+SELECT 
+    a.asset_type,
+    t.category,
+    COUNT(t.ticket_id) AS num_tickets
+FROM assets AS a
+LEFT JOIN tickets AS t
+    ON a.asset_id = t.asset_id       
+WHERE a.asset_type IN ('Printer', 'Laptop')
+GROUP BY a.asset_type, t.category
+ORDER BY a.asset_type, num_tickets DESC;
+
+
