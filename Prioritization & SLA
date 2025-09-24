@@ -1,0 +1,55 @@
+/*4. Resolution Analysis
+5. Status & Performance Metrics
+*/
+
+
+-- What is the average time to resolve tickets by category?-- 
+select 
+category,
+avg(datediff(day,created_at,resolved_at)) as avg_time_taken
+from tickets 
+group by category
+order by avg(datediff(day,created_at,resolved_at)) DESC 
+
+
+--Which support engineer or team resolved the most tickets? (if you add an assigned_to column)--
+select * from users
+select * from tickets 
+
+With cte_most as 
+(
+Select 
+u.department,
+t.category,
+t.status
+from users as u  
+left join tickets as t 
+on u.user_id = t.user_id 
+) 
+
+select 
+Department,
+count(status) as no_of_closed 
+from cte_most 
+where status = 'Closed'
+group by department 
+order by department Desc 
+
+-- How many tickets are still open vs closed?-- 
+
+select 
+status,
+count(*) as no_ticket_status
+from tickets 
+where status in ('Open', 'Closed') 
+Group by  status 
+
+SLA compliance percentage by department or asset type */
+
+
+SELECT 
+    u.department,
+    100.0 * SUM(CASE WHEN t.sla_met = 'Y' THEN 1 ELSE 0 END) / COUNT(*) AS sla_compliance_pct
+FROM tickets AS t
+JOIN users AS u ON t.user_id = u.user_id
+GROUP BY u.department;
